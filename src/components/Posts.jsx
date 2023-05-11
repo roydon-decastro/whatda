@@ -3,11 +3,11 @@ import { makeRequest } from "../axios";
 import Post from "./Post";
 
 const Posts = ({ userId }) => {
-  userId = 15;
+  // userId = 15;
   console.log("userID = " + userId);
   const { isLoading, error, data } = useQuery(["posts"], () =>
-    // makeRequest.get("/posts?userId=" + userId).then((res) => {
-    makeRequest.get("/posts").then((res) => {
+    makeRequest.get("/posts?userId=" + userId).then((res) => {
+      // makeRequest.get("/posts").then((res) => {
       return res.data;
     })
   );

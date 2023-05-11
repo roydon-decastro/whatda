@@ -2,7 +2,8 @@ import { Heart, Megaphone, MessageSquare } from "lucide-react";
 
 const MyPage = () => {
   return (
-    <div className="w-4/12 pl-48 pr-8 hidden lg:block">
+    <div className="w-4/12 pl-48 pr-8 hidden lg:block pt-12">
+      <h2 className="text-gray-600 mb-4">Recent Posts</h2>
       <div className="border p-4 rounded-lg mb-4">
         <p className=" text-gray-400 hover:text-gray-700 text-sm mb-4">
           Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -33,7 +34,7 @@ const MyPage = () => {
       </div>
       <hr />
       <div className="mt-4 text-gray-400">
-        <h2 className="text-gray-600 mb-4">Topics Interests</h2>
+        <h2 className="text-gray-600 mb-4">Followed</h2>
       </div>
     </div>
   );

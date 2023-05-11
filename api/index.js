@@ -1,11 +1,11 @@
 import express from "express";
 import authRoutes from "./routes/authRoutes.js";
 
-// import userRoutes from "./routes/usersRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postsRoutes.js";
 import commentsRoutes from "./routes/commentsRoutes.js";
 import likesRoutes from "./routes/likesRoutes.js";
-// import relationshipRoutes from "./routes/relationshipsRoutes.js";
+import relationshipRoutes from "./routes/relationshipsRoutes.js";
 import bcrypt from "bcryptjs";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -42,11 +42,11 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-// app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentsRoutes);
 app.use("/api/likes", likesRoutes);
-// app.use("/api/relationships", relationshipRoutes);
+app.use("/api/relationships", relationshipRoutes);
 
 app.listen(8800, () => {
   console.log("API working!");

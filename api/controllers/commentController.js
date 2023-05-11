@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import moment from "moment";
 
 export const getComments = (req, res) => {
-  console.log("dumaan dito sa comments " + req.query.postId);
+  // console.log("dumaan dito sa comments " + req.query.postId);
   const q = `SELECT c.*, u.id AS userId, name FROM comments AS c JOIN users AS u ON (u.id = c.userId)
     WHERE c.postId = ? ORDER BY c.created_At DESC
     `;

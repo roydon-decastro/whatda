@@ -12,9 +12,9 @@ import {
 
 export function Sidebar() {
   return (
-    <div className="relative lg:w-4/12">
+    <div className="relative lg:w-2/12 pt-12">
       <aside className=" lg:flex h-screen flex-col overflow-y-auto px-5 hidden fixed">
-        <div className="mt-6 flex flex-1 flex-col justify-between">
+        <div className="flex flex-1 flex-col justify-between">
           <nav className="-mx-3 space-y-6 ">
             <div className="space-y-3 ">
               <label className="px-3 text-xs font-semibold uppercase text-gray-900">

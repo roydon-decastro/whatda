@@ -1,4 +1,4 @@
-import { Heart, Megaphone, MessageSquare } from "lucide-react";
+import { Heart, Megaphone, MessageSquare, UserPlus } from "lucide-react";
 import { AuthContext } from "../context/authContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -63,7 +63,9 @@ const Post = ({ post }) => {
           alt="Danc_Abromov"
         />
         <div className=" text-sm text-gray-400">
-          <h3>{post.name}</h3>
+          <Link to={`/profile/${post.userId}`}>
+            <h3 className=" hover:text-gray-900">{post.name}</h3>
+          </Link>
           <span className="date">{moment(post.createdAt).fromNow()}</span>
         </div>
       </div>
@@ -72,32 +74,43 @@ const Post = ({ post }) => {
           className=" h-auto w-full mb-4 rounded-lg"
           // src={post.img}
           src={"/upload/" + post.img}
-          alt="Dan_Abromov"
+          alt=""
         />
       )}
       <p className=" text-gray-400 hover:text-gray-700 text-sm mb-4">
         {post.desc}
       </p>
       <hr />
-      <div className="flex text-gray-400 gap-4 mt-4">
-        <div className="flex items-center text-xs gap-2">
-          {isLoading ? (
-            "loading"
-          ) : data.includes(currentUser.id) ? (
-            <Heart className=" text-red-500 w-4 h-4" onClick={handleLike} />
-          ) : (
-            <Heart className=" w-4 h-4" onClick={handleLike} />
-          )}
-          {data?.length} Likes
+      <div className="flex text-gray-400 justify-between mt-4 items-center">
+        <div className="flex gap-4">
+          <div className="flex items-center text-xs gap-2">
+            {isLoading ? (
+              "loading"
+            ) : data.includes(currentUser.id) ? (
+              <Heart className=" text-red-500 w-4 h-4" onClick={handleLike} />
+            ) : (
+              <Heart className=" w-4 h-4" onClick={handleLike} />
+            )}
+            {data?.length} Likes
+          </div>
+
+          {/* <Heart className="w-4 h-4" onClick={handleLike} /> */}
+
+          <div
+            className="flex gap-2 items-center text-xs"
+            onClick={() => setCommentOpen(!commentOpen)}
+          >
+            <MessageSquare className="w-4 h-4" />
+            <p> Comments</p>
+          </div>
         </div>
 
-        {/* <Heart className="w-4 h-4" onClick={handleLike} /> */}
-
-        <div className="item" onClick={() => setCommentOpen(!commentOpen)}>
-          <MessageSquare className="w-4 h-4" />
-        </div>
+        <button className="flex gap-1 text-xs border p-1 rounded bg-blue-500 text-white">
+          <UserPlus className=" h-4 w-4" />
+          Follow
+        </button>
       </div>
-      {commentOpen && <Comments postId={post.id} />}
+      {commentOpen && <Comments postId={post.id} key={post.id} />}
     </div>
   );
 };

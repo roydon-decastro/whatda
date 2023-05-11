@@ -1,35 +1,39 @@
-"use client";
-
 import React from "react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
-
-const menuItems = [
-  {
-    name: "Profile",
-    href: "#",
-  },
-  {
-    name: "About",
-    href: "#",
-  },
-  // {
-  //   name: "Contact",
-  //   href: "#",
-  // },
-];
+import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/authContext";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { currentUser } = useContext(AuthContext);
+
+  const menuItems = [
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "Profile",
+      href: "/profile/" + currentUser.id,
+      // href: `/profile/`,
+    },
+
+    // {
+    //   name: "Contact",
+    //   href: "#",
+    // },
+  ];
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <div className=" sticky top-0 z-50">
+    <div className=" sticky top-0 z-50 shadow">
       <div className="relative w-full bg-white">
         <div className="flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center space-x-2">
+          <Link to="/" className="inline-flex items-center space-x-2">
             <span>
               <svg
                 width="30"
@@ -44,28 +48,28 @@ export function Navbar() {
                 />
               </svg>
             </span>
-            <span className="font-bold">SAC</span>
-          </div>
+            <span className="font-bold text-2xl">convo</span>
+          </Link>
           <div className="hidden lg:block">
             <ul className="ml-12 inline-flex space-x-8">
               {menuItems.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className="inline-flex items-center text-sm font-semibold text-gray-800 hover:text-gray-900"
                   >
                     {item.name}
                     {/* <span>
                       <ChevronDown className="ml-2 h-4 w-4" />
                     </span> */}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
           <div className="flex grow justify-end">
             <input
-              className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 "
+              className="hidden lg:flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 "
               type="text"
               placeholder="Search"
             ></input>

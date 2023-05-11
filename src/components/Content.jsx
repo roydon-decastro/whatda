@@ -7,7 +7,7 @@ const Content = () => {
   const { currentUser } = useContext(AuthContext);
   return (
     <>
-      <div className="relative h-screen lg:w-4/12 w-full px-4 lg:px-0 z-10">
+      <div className="relative h-screen lg:w-4/12 w-full px-4 lg:px-0 z-10 pt-12">
         {/* <div className="border p-4 rounded-lg mb-8">
           <form action="" className="flex gap-2">
             <img

@@ -6,7 +6,7 @@ export const register = (req, res) => {
   // step create query to check if users exists,
   // step use ? because it's much more secure than req.body.username
   const q = "SELECT * FROM users WHERE username = ?";
-  console.log(req.body);
+  // console.log(req.body);
   db.query(q, [req.body.username], (err, data) => {
     if (err) return res.status(499).json(err); // 500 server error
     if (data.length) return res.status(409).json("User already exists!");
@@ -33,7 +33,7 @@ export const register = (req, res) => {
 };
 
 export const login = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const q = "SELECT * FROM users WHERE username = ?";
 
   db.query(q, [req.body.username], (err, data) => {
